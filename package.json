@@ -1,5 +1,5 @@
 {
-  "name": "iag",
+  "name": "ascii-gen-ts",
   "version": "0.1.0",
   "description": "Image/video frame to ASCII art converter",
   "main": "dist/index.js",
