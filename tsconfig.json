@@ -4,8 +4,9 @@
     "module": "CommonJS",
     "moduleResolution": "node",
     "outDir": "dist",
+    "rootDir": "src",
     "declaration": true,
     "strict": true
   },
-  "include": ["src/**/*.ts", "bench/**/*.ts"]
+  "include": ["src/**/*.ts"]
 }
