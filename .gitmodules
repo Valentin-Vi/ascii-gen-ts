@@ -1,0 +1,3 @@
+[submodule "deps/ascii-gen-c"]
+	path = deps/ascii-gen-c
+	url = https://github.com/Valentin-Vi/ascii-gen-c.git

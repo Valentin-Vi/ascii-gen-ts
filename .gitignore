@@ -57,3 +57,5 @@ dkms.conf
 # Node / TypeScript
 node_modules/
 dist/
+build/
+bench-results.json
