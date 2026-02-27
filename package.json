@@ -4,7 +4,6 @@
   "description": "Image/video frame to ASCII art converter",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "gypfile": true,
   "files": [
     "dist",
     "build"
@@ -23,11 +22,9 @@
     "ansi"
   ],
   "license": "MIT",
-  "dependencies": {
-    "node-addon-api": "^8.0.0"
-  },
   "devDependencies": {
     "@types/node": "^20.0.0",
+    "node-addon-api": "^8.0.0",
     "node-gyp": "^10.0.0",
     "ts-node": "^10.9.0",
     "typescript": "^5.0.0"

@@ -1,7 +1,6 @@
 import type { Cell, ConvertOptions } from './converter';
 
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const addon = require('../build/Release/iag_native') as {
+type Addon = {
   convertFrameNative(
     pixels: Buffer,
     fw: number,
@@ -11,6 +10,23 @@ const addon = require('../build/Release/iag_native') as {
     ramp: string,
   ): Array<{ char: string; r: number; g: number; b: number }>;
 };
+
+let _addon: Addon | undefined;
+
+function getAddon(): Addon {
+  if (_addon) return _addon;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    _addon = require('../build/Release/iag_native') as Addon;
+    return _addon;
+  } catch {
+    throw new Error(
+      'ascii-gen-ts: native addon not built. ' +
+      'Run `node-gyp rebuild` inside the package directory ' +
+      'or use `convertFrame` (pure TypeScript) instead.',
+    );
+  }
+}
 
 const DEFAULT_RAMP = ' .,:;+*?%S#@';
 const DEFAULT_COLS = 80;
@@ -30,7 +46,7 @@ export function convertFrameNative(
     ? pixels
     : Buffer.from(pixels.buffer, pixels.byteOffset, pixels.byteLength);
 
-  const flat = addon.convertFrameNative(buf, frameWidth, frameHeight, cols, rows, ramp);
+  const flat = getAddon().convertFrameNative(buf, frameWidth, frameHeight, cols, rows, ramp);
 
   const result: Cell[][] = [];
   for (let row = 0; row < rows; row++) {
